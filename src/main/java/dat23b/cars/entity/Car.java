@@ -1,9 +1,10 @@
 package dat23b.cars.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="cars")
@@ -11,6 +12,7 @@ public class Car {
 
     //Fields
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column(name="car_brand", length= 50, nullable = false)
     private String brand;
@@ -20,6 +22,13 @@ public class Car {
     private double pricePrDay;
     @Column(name="max_discount")
     private int bestDiscount;
+
+    @Column(name="created")
+    @CreationTimestamp
+    private LocalDateTime created;
+    @Column(name="last_updated")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdated;
 
     //Constructors
     public Car() {
