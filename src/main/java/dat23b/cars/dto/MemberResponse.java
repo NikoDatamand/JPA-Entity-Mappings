@@ -10,22 +10,19 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor //A must for @Builder
-@Builder  //I will demo it's purpose in the class
-//It's really IMPORTANT that you understand the purpose of this annotation
+@AllArgsConstructor
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MemberResponse {
-    String username; //Remember this is the primary key
-    //Observe password is obviously not included
+    String username;
     String email;
     String firstName;
     String lastName;
     String street;
     String city;
     String zip;
-    //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime created;
-
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime edited;
     int ranking;

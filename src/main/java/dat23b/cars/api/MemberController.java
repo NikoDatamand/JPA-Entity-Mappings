@@ -22,37 +22,41 @@ class MemberController {
         this.memberService = memberService;
     }
 
-    //Security ???
+    //Access type: all
     @GetMapping
     List<MemberResponse> getMembers(){
         return memberService.getMembers(false);
     }
 
-    //Security ???
+    //Access type: all
     @GetMapping(path = "/{username}")
-    MemberResponse getMemberById(@PathVariable String username) throws Exception {return null;}
+    MemberResponse getMemberById(@PathVariable String username) throws Exception {
+        return memberService.getMemberById(username, false);
+    }
 
-    //Security --> ??????
+    //Access type: member, admin
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     MemberResponse addMember(@RequestBody MemberRequest body){
         return memberService.addMember(body);
     }
 
-    //Security ???
+    //Access type: member, admin
     @PutMapping("/{username}")
     ResponseEntity<Boolean> editMember(@RequestBody MemberRequest body, @PathVariable String username){
         return null;
     }
 
-    //Security ????
+    //Access type: admin
     @PatchMapping("/ranking/{username}/{value}")
     ResponseEntity<Boolean> setRankingForUser(@PathVariable String username, @PathVariable int value) {
         return null;
     }
 
-    // Security ????
+    //Access type: admin
     @DeleteMapping("/{username}")
-    void deleteMemberByUsername(@PathVariable String username) {}
+    void deleteMemberByUsername(@PathVariable String username) {
+        memberService.deleteMemberByUsername(username);
+    }
 
 
 }

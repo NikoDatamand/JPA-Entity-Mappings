@@ -30,9 +30,18 @@ public class MemberService {
         return response;
     }
 
+    public MemberResponse getMemberById(String username, boolean includeAll) throws Exception {
+        Member member = memberRepo.findById(username).orElseThrow(() -> new Exception("Member not found"));
+        return new MemberResponse(member, includeAll);
+    }
+
     public MemberResponse addMember(MemberRequest body) {
         Member newMember = MemberRequest.getMemberEntity(body);
         newMember = memberRepo.save(newMember);
         return new MemberResponse(newMember, true);
+    }
+
+    public void deleteMemberByUsername(String username) {
+        memberRepo.deleteById(username);
     }
 }
