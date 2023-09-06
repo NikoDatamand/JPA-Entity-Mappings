@@ -4,10 +4,7 @@ import dat23b.cars.dto.MemberRequest;
 import dat23b.cars.dto.MemberResponse;
 import dat23b.cars.entity.Member;
 import dat23b.cars.repository.MemberRepo;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,6 @@ import dat23b.cars.dto.CarRequest;
 import dat23b.cars.dto.CarResponse;
 import dat23b.cars.entity.Car;
 import dat23b.cars.repository.CarRepo;
-import dat23b.cars.service.CarService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,9 +90,7 @@ public class CarServiceTest {
         // Arrange (no car in the database)
 
         // Act & Assert
-        Exception exception = org.junit.jupiter.api.Assertions.assertThrows(Exception.class, () -> {
-            carService.getCarById(1, true);
-        });
+        Exception exception = org.junit.jupiter.api.Assertions.assertThrows(Exception.class, () -> carService.getCarById(1, true));
 
         assertThat(exception.getMessage()).isEqualTo("Car not found");
     }

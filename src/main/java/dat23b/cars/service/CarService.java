@@ -30,7 +30,7 @@ public class CarService {
 
     public CarResponse getCarById(int id, boolean includeAll) throws Exception {
         Car car = carRepo.findById(id).orElseThrow(() -> new Exception("Car not found"));
-        return new CarResponse(car, true);
+        return new CarResponse(car, includeAll);
     }
 
     public CarResponse addCar(CarRequest body) {
