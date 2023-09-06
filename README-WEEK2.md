@@ -33,7 +33,7 @@ As we can't test the database itself, we must create a stub implementation of it
 
 - How did you mock database access in your tests, using an in-memory database and/or mockito → Refer to your code
 
-
+By using the @DataJpaTest. In this way, I am using the H2 in-memory database to test and assert different requests, without having to deploy anything front-end nor host a local MySQL database. 
 
 
 - Explain the concept Build Server and the role Github Actions play here
