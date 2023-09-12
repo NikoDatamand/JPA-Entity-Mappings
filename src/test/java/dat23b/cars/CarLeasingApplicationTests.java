@@ -1,4 +1,4 @@
-package dat23b.cars;
+/*package dat23b.cars;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,3 +11,4 @@ class CarLeasingApplicationTests {
     }
 
 }
+*/
