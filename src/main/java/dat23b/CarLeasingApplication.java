@@ -1,4 +1,4 @@
-package dat23b.cars;
+package dat23b;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

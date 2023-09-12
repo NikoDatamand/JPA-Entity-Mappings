@@ -33,7 +33,7 @@ public class MemberService {
     }
 
     public MemberResponse addMember(MemberRequest body) {
-        Member newMember = MemberRequest.getMemberEntity(body);
+        Member newMember = MemberRequest.createMemberEntity(body);
         newMember = memberRepo.save(newMember);
         return new MemberResponse(newMember, true);
     }

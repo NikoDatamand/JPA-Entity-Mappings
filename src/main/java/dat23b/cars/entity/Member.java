@@ -1,67 +1,46 @@
 package dat23b.cars.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import dat23b.security.entity.UserWithRoles;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name="members")
-public class Member {
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "USER_TYPE")
+public class Member extends UserWithRoles {
 
     //Fields
-    @Id
-    private String username;
-    @Column(name="email", length= 50, nullable = false)
-    private String email;
-    @Column(name="password", length= 50, nullable = false)
-    private String password;
-    @Column(name="first_name", length= 50, nullable = false)
     private String firstName;
-    @Column(name= "last_name", length= 60, nullable = false)
     private String lastName;
-    @Column(name="street", length= 50, nullable = false)
     private String street;
-    @Column(name="zip", length= 50, nullable = false)
     private String zip;
-    @Column(name="city", length= 50, nullable = false)
     private String city;
-    @Column(name="approved")
     private boolean approved;
-    @Column(name="ranking")
     private int ranking;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Reservation> reservations;
 
-    @Column(name="created")
-    @CreationTimestamp
-    private LocalDateTime created;
-    @Column(name="last_updated")
-    @UpdateTimestamp
-    private LocalDateTime lastUpdated;
-
-    //Constructors
-    public Member() {
-
-    }
-
-    public Member(String user, String password, String email, String firstName,
-                  String lastName, String street, String city, String zip) {
-        this.username = user;
-        this.password= password;
-        this.email = email;
+    public Member(String user, String password, String email, String firstName, String lastName, String street, String city, String zip) {
+        super(user, password, email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
         this.city = city;
         this.zip = zip;
+        this.approved = false;
+        this.ranking = 0;
+        this.reservations = new ArrayList<>();
     }
-
 
 }

@@ -34,7 +34,7 @@ public class CarService {
     }
 
     public CarResponse addCar(CarRequest body) {
-        Car newCar = CarRequest.getCarEntity(body);
+        Car newCar = CarRequest.createCarEntity(body);
         newCar = carRepo.save(newCar);
         return new CarResponse(newCar, true);
     }

@@ -1,18 +1,22 @@
 package dat23b.cars.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
 @Table(name="cars")
-public class Car {
+public class Car extends AdminDetails {
 
     //Fields
     @Id
@@ -26,25 +30,7 @@ public class Car {
     private double pricePrDay;
     @Column(name="max_discount")
     private int bestDiscount;
-
-    @Column(name="created")
-    @CreationTimestamp
-    private LocalDateTime created;
-    @Column(name="last_updated")
-    @UpdateTimestamp
-    private LocalDateTime lastUpdated;
-
-    //Constructors
-    public Car() {
-
-    }
-
-    public Car(String brand, String model, double pricePrDay, int bestDiscount) {
-        this.brand = brand;
-        this.model = model;
-        this.pricePrDay = pricePrDay;
-        this.bestDiscount = bestDiscount;
-    }
-
+    @OneToMany(mappedBy = "car", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Reservation> reservations;
 
 }

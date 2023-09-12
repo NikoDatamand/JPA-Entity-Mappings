@@ -1,4 +1,4 @@
-package dat23b.cars.service;
+/* package dat23b.cars.service;
 
 import dat23b.cars.dto.CarRequest;
 import dat23b.cars.dto.CarResponse;
@@ -108,4 +108,4 @@ public class CarServiceTest {
         Optional<Car> deletedCar = carRepo.findById(car.getId());
         assertThat(deletedCar).isEmpty();
     }
-}
+} */

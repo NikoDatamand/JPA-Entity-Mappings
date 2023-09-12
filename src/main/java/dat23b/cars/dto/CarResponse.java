@@ -34,7 +34,7 @@ public class CarResponse {
         if(includeAll){
             this.id = c.getId();
             this.created = c.getCreated();
-            this.edited = c.getLastUpdated();
+            this.edited = c.getEdited();
         }
     }
 
